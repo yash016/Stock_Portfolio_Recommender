@@ -3,8 +3,9 @@ import json
 import pandas as pd
 from time import sleep
 import streamlit as st
+from PIL import Image
 # interact with FastAPI endpoint
-backend = "http://127.0.0.1:8000/recommendation"
+backend = "http://127.0.0.3:8000/recommendation"
 
 
 def process(num, server_url: str):
@@ -37,8 +38,16 @@ if st.button("Get Recommended Portfolio"):
         df = pd.json_normalize(output)
         portfolio_df = df.T
         portfolio_df = portfolio_df.reset_index()
-        portfolio_df.columns = ['Ticker Symbol', 'Company_Name', 'Number of shares']
-        st.dataframe(portfolio_df)
+        portfolio_df.columns = ['Ticker Symbol', 'Number of shares']
+        st.table(portfolio_df)
+        
+        st.subheader("Stock Weights")
+        image = Image.open('plots/weights_plot.png')
+        st.image(image)
+        
+        st.subheader("Efficient Frontier")
+        image = Image.open('plots/ef_plot.png')
+        st.image(image)
 
     else:
         st.write("Insert an numeric value in dollars!")
