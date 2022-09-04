@@ -26,7 +26,8 @@ async def get_recommendation(data: PortfolioValue):
     
     t = si.tickers_sp500()
     tickers = []
-    r = ['ALL', 'BRO', 'CDAY', 'MTCH', 'TECH']
+    r = ['ALL', 'BRO', 'CDAY', 'MTCH', 'TECH', 'BALL', 'CEG', 'CPT', 'CTRA', 'ELV', 'EPAM', 'FDS', 'KDP', 'META', 'MOH',
+         'NDSN', 'ON', 'PARA', 'SBNY', 'SEDG', 'VICI', 'WBD', 'WTW']
     for item in r:
         t.remove(item)
     for x in t:
